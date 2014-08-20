@@ -9,7 +9,7 @@ Installation - Setup - Configuration
 
 ### Apache Webserver
 
-#### Create Users
+#### Create user & install apache2
 
 ```bash
 $ sudo useradd -m "web"
@@ -20,27 +20,28 @@ $ sudo apt-get install apache2
 ```
 
 
-Interaktiver Inhalt für Webserver herunterladen
+#### Download and publish web-content
 
-<code>
+```bash
 $ wget https://raw.githubusercontent.com/mgje/webprogramming/gh-pages/raspberry/WebProgramming.zip
 $ unzip WebProgramming.zip
 $ sudo mv WebProgramming /var/www
-</code>
+```
 
+#### Restart apache server daemon
 
-<code>
-sudo /etc/init.d/apache2 restart
-</code>
+```bash
+$ sudo /etc/init.d/apache2 restart
+```
 
+#### Optional additional web-packages
 
-Zusätzliche Webserver Pakete für PHP und MySQL
-<code>
+```bash
 $ sudo apt-get install php5
 $ sudo apt-get install mysql-server
 $ sudo apt-get install php5-mysql
 $ sudo apt-get install phpmyadmin
-</code>
+```
 
 
 === Installation AccessPoint und DHCP-Server ===
