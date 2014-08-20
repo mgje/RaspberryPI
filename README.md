@@ -7,15 +7,18 @@ Raspberry Pi
 Installation - Setup - Configuration
 ====================================
 
-==== Webserver installieren ====
-User und Gruppe anlegen
-<code>
+### Apache Webserver
+
+#### Create Users
+
+```bash
 $ sudo useradd -m "web"
 $ sudo passwd "web"
 $ sudo groupadd www
 $ sudo adduser web www
 $ sudo apt-get install apache2
-</code>
+```
+
 
 Interaktiver Inhalt für Webserver herunterladen
 
