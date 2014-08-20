@@ -372,7 +372,20 @@ $ sudo shutdown -r now
 Backup your image
 =================
 
+Find the disknumber of the SD-card with the mount command
+Change the X in the commandline to the disknumber
 
+Backup SD-card to packed image
+
+```bash
+$ sudo dd if=/dev/rdiskX bs=1m | gzip > /path/to/backup.img.gz 
+```
+
+Restore image to SD-Card
+
+```bash
+$ gzip -dc /path/to/backup.img.gz | sudo dd of=/dev/rdiskX bs=1m
+```
 
 
 
