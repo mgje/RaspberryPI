@@ -34,7 +34,7 @@ $ sudo mv WebProgramming /var/www
 $ sudo /etc/init.d/apache2 restart
 ```
 
-#### Optional additional web-packages
+#### Optional web-packages
 
 ```bash
 $ sudo apt-get install php5
@@ -43,27 +43,28 @@ $ sudo apt-get install php5-mysql
 $ sudo apt-get install phpmyadmin
 ```
 
+#### Install accesspoint and dhcp-server
 
-=== Installation AccessPoint und DHCP-Server ===
-<code>
+```bash
 $ sudo apt-get install hostapd iw isc-dhcp-server
-</code>
+```
 
-die Installation endet mit
+#### Next step configuration of the isc-dhcp-server
+
+ignore the first error messages!
 
 [FAIL] Starting ISC DHCP server...
 
-Dieser muss zuerst konfiguriert werden !
+open the isc-dhcp-server startscript and change the
+last line to INTERFACES="wlan0"
 
-=== DHCP Server konfigurieren ===
-
-Die letzte Zeile wie folgt ändern: INTERFACES="wlan0"
-
-<code>
+```bash
 $ sudo nano /etc/default/isc-dhcp-server
-</code>
+```
 
-<code>
+the edited start script should look as follows
+
+```bash
 # Defaults for isc-dhcp-server initscript
 # sourced by /etc/init.d/isc-dhcp-server
 # installed at /etc/default/isc-dhcp-server by the maintainer scripts
@@ -85,23 +86,23 @@ $ sudo nano /etc/default/isc-dhcp-server
 # On what interfaces should the DHCP server (dhcpd) serve DHCP requests?
 #       Separate multiple interfaces with spaces, e.g. "eth0 eth1".
 INTERFACES="wlan0"
-</code>
+```
+change the configuration file dhcp.conf
 
-<code>
+```bash
 $ sudo nano /etc/dhcp/dhcpd.conf
-</code>
+```
 
-auskommentieren der Zeilen mit 
+uncomment the two line with option
 
-<code>
+```
 # option domain-name "example.org":
 # option domain-name-servers ns1.example.org ns2.example.org
-</code>
+```
 
+and append at the end of the file the following lines
 
-am Schluss anhängen
-
-<code>
+```
 subnet 192.168.42.0 netmask 255.255.255.0 {
 range 192.168.42.10 192.168.42.50;
 option broadcast-address 192.168.42.255;
@@ -110,7 +111,7 @@ default-lease-time 600;
 max-lease-time 7200;
 option domain-name "local";
 option domain-name-servers 192.168.42.1, 131.152.1.1;}
-</code>
+```
 
 
 
