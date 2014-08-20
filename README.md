@@ -95,14 +95,14 @@ $ sudo nano /etc/dhcp/dhcpd.conf
 
 uncomment the two line with option
 
-```
+```bash
 # option domain-name "example.org":
 # option domain-name-servers ns1.example.org ns2.example.org
 ```
 
 and append at the end of the file the following lines
 
-```
+```bash
 subnet 192.168.42.0 netmask 255.255.255.0 {
 range 192.168.42.10 192.168.42.50;
 option broadcast-address 192.168.42.255;
@@ -113,27 +113,25 @@ option domain-name "local";
 option domain-name-servers 192.168.42.1, 131.152.1.1;}
 ```
 
+the following command let the dhcp service start automatic
+after reboot
 
-
-nach reboot automatisch starten
-
-<code>
+```bash
 $ sudo update-rc.d isc-dhcp-server enable
-</code>
+```
 
+#### Configuration of the accesspoint (hostapd)
+##### for  Edimax Technology Co., Ltd EW-7811Un 802.11n Wireless Adapter [Realtek RTL8188CUS]
 
+create a configuration file
 
-
-
-=== Hotspot konfigurieren ===
-
-<code>
+```bash
 $ sudo nano /etc/hostapd/hostapd.conf
-</code>
+```
 
-die folgende Konfiguration hinein kopieren:
+paste the following lines in hostapd.conf
 
-<code>
+```bash
 # Schnittstelle und Treiber
 interface=wlan0
 driver=rtl871xdrv
@@ -191,30 +189,29 @@ wpa_ptk_rekey=600
 wpa_gmk_rekey=86400
 # Zugangsschluessel (PSK) / hier in Klartext (ASCII)
 wpa_passphrase=raspberrypi
-</code>
+```
 
-Update hostapd
+Patch for the RTL8188CUS hardware driver
 
-<code>
+```bash
 $ wget http://www.adafruit.com/downloads/adafruit_hostapd.zip
 $ unzip adafruit_hostapd.zip
 $ sudo mv /usr/sbin/hostapd /usr/sbin/hostapd.ORIG
 $ sudo mv hostapd /usr/sbin
 $ sudo chmod 755 /usr/sbin/hostapd
 $ sudo update-rc.d hostapd enable
-</code>
+```
+adapt the startskript /etc/init.d/hostapd
 
-hostapd Startskript anpassen
-
-<code>
+```bash
 $ sudo nano /etc/init.d/hostapd
-</code>
+```
+update line 19 DAEMON_CONF ...
+update line 28 DAEMON_OPTS ...
 
-DAEMON_CONF eintragen (Zeile 19)
+the start script should look like the following codeblock
 
-Option -d vor $DAEMON_CONF in DAEMON_OPTS (Zeile 28)
-
-<code>
+```bash
 #!/bin/sh
 
 ### BEGIN INIT INFO
@@ -248,8 +245,10 @@ DAEMON_OPTS="-B -P $PIDFILE $DAEMON_OPTS -d  $DAEMON_CONF"
 
 case "$1" in
   start)
+
 ...
-</code>
+
+```
 
 
 
