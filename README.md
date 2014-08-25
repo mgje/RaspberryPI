@@ -43,10 +43,10 @@ $ sudo apt-get install php5-mysql
 $ sudo apt-get install phpmyadmin
 ```
 
-#### Install accesspoint and dhcp-server
+### Install dhcp-server
 
 ```bash
-$ sudo apt-get install hostapd iw isc-dhcp-server
+$ sudo apt-get install isc-dhcp-server
 ```
 
 #### Next step configuration of the isc-dhcp-server
@@ -119,6 +119,14 @@ after reboot
 ```bash
 $ sudo update-rc.d isc-dhcp-server enable
 ```
+
+
+### Install  AccessPoint
+
+```bash
+$ sudo apt-get install hostapd iw 
+```
+
 
 #### Configuration of the accesspoint (hostapd)
 ##### for  Edimax Technology Co., Ltd EW-7811Un 802.11n Wireless Adapter [Realtek RTL8188CUS]
