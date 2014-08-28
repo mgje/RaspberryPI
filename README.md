@@ -11,15 +11,11 @@ Installation - Setup - Configuration
 ### SciPy - Scientific Computing with Python
 
 ```bash
-$ sudo apt-get install libblas-dev        ## 1-2 minutes
-$ sudo apt-get install liblapack-dev      ## 1-2 minutes
-[$ sudo apt-get install python-dev        ## Optional]
-[$ sudo apt-get install libatlas-base-dev ## Optional speed up execution]
-$ sudo apt-get install gfortran           ## 2-3 minutes
-$ sudo apt-get install python-setuptools  ## ?
-$ sudo easy_install scipy                 ## 2-3 hours
-$ ## previous might also work: python-scipy without all dependencancies
-$ sudo apt-get install python-matplotlib  ## 1 hour
+$ sudo apt-get install python-smbus ipython bluetooth bluez-utils \
+python-cwiid python-scipy python-numpy python-pygame \
+python-setuptools libsdl-dev
+
+
 ``` 
 
 
