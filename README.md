@@ -7,7 +7,7 @@ Raspberry Pi
 Write image direct on SD-card. Change X to the number of disk.
 
 ```bash
-$ curl -L "https://drive.switch.ch/public.php?service=files&t=c3258d0f03ddd85eb4f00b1dc908ad35&download"  | \
+$ curl "https://drive.switch.ch/public.php?service=files&t=c3258d0f03ddd85eb4f00b1dc908ad35&download"  | \
 gzip -dc | sudo dd of=/dev/rdiskX bs=1m
 ```
 
